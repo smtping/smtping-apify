@@ -1,0 +1,53 @@
+{
+  "actorSpecification": 1,
+  "fields": {},
+  "views": {
+    "overview": {
+      "title": "Results",
+      "transformation": {
+        "fields": [
+          "email",
+          "status",
+          "band",
+          "statusDescription",
+          "isFreeEmail",
+          "isRoleAccount",
+          "mxRecord"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "email": {
+            "label": "Email",
+            "format": "text"
+          },
+          "status": {
+            "label": "Status",
+            "format": "text"
+          },
+          "band": {
+            "label": "Band",
+            "format": "text"
+          },
+          "statusDescription": {
+            "label": "Detail",
+            "format": "text"
+          },
+          "isFreeEmail": {
+            "label": "Free provider",
+            "format": "boolean"
+          },
+          "isRoleAccount": {
+            "label": "Role account",
+            "format": "boolean"
+          },
+          "mxRecord": {
+            "label": "MX",
+            "format": "text"
+          }
+        }
+      }
+    }
+  }
+}
