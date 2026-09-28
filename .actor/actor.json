@@ -1,0 +1,17 @@
+{
+  "actorSpecification": 1,
+  "name": "smtping-email-verifier",
+  "title": "SMTPing Email Verifier",
+  "description": "Verify email lists with SMTPing before you send: valid, invalid, catch-all, disposable, spamtrap, role and more. Bring your own SMTPing API key.",
+  "version": "1.0",
+  "buildTag": "latest",
+  "meta": {
+    "templateId": "js-empty"
+  },
+  "input": "./input_schema.json",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  },
+  "dockerfile": "../Dockerfile",
+  "readme": "../README.md"
+}
