@@ -6,7 +6,7 @@
     "apiKey": {
       "title": "SMTPing API key",
       "type": "string",
-      "description": "Your API key from smtping.com (Dashboard > API). New accounts get free credits.",
+      "description": "Your API key from smtping.com (Dashboard > API). Every account gets 25 free credits per day, no card required.",
       "editor": "textfield",
       "isSecret": true
     },
@@ -28,7 +28,7 @@
     "outputFilter": {
       "title": "Rows to keep in the dataset",
       "type": "string",
-      "description": "safe = valid and alias only. safe_judgement also keeps catch-all, unknown and role. all keeps everything.",
+      "description": "safe = valid and alias only. safe_judgement also keeps catchall, valid_catchall and unknown. all keeps everything, including do_not_send rows.",
       "editor": "select",
       "enum": [
         "all",
@@ -37,7 +37,7 @@
       ],
       "enumTitles": [
         "All results",
-        "Safe + judgement (drop avoid)",
+        "Safe + judgement (drop do not send)",
         "Safe only"
       ],
       "default": "all"
