@@ -1,17 +1,14 @@
 {
   "actorSpecification": 1,
-  "name": "smtping-email-verifier",
-  "title": "SMTPing Email Verifier",
-  "description": "Verify email lists with SMTPing before you send: valid, invalid, catch-all, disposable, spamtrap, role and more. Bring your own SMTPing API key.",
+  "name": "email-verifier",
+  "title": "Email Verifier | 13 Verdicts, Spamtrap Detection | $0.15/1k",
+  "description": "Email verification against 150M spamtraps, 70M complainers, 1M spambots and bot clickers, 3,500+ disposable domains monitored daily. 13 verdicts incl. typo and catch-all. From $0.15/1k, unknown results free. Bring your own SMTPing API key.",
   "version": "1.0",
   "buildTag": "latest",
-  "meta": {
-    "templateId": "js-empty"
-  },
+  "meta": { "templateId": "js-empty" },
   "input": "./input_schema.json",
-  "storages": {
-    "dataset": "./dataset_schema.json"
-  },
+  "storages": { "dataset": "./dataset_schema.json" },
   "dockerfile": "../Dockerfile",
-  "readme": "../README.md"
+  "readme": "../README.md",
+  "output": "./output_schema.json"
 }
