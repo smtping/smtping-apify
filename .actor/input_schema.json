@@ -1,0 +1,67 @@
+{
+  "title": "SMTPing Email Verifier input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "apiKey": {
+      "title": "SMTPing API key",
+      "type": "string",
+      "description": "Your API key from smtping.com (Dashboard > API). New accounts get free credits.",
+      "editor": "textfield",
+      "isSecret": true
+    },
+    "emails": {
+      "title": "Email addresses",
+      "type": "array",
+      "description": "One address per line. Duplicates and malformed lines are removed.",
+      "editor": "stringList",
+      "prefill": [
+        "john@example.com"
+      ]
+    },
+    "fileUrl": {
+      "title": "List URL (CSV or TXT)",
+      "type": "string",
+      "description": "Optional public URL of a CSV or TXT file. Every email address found in it is verified.",
+      "editor": "textfield"
+    },
+    "outputFilter": {
+      "title": "Rows to keep in the dataset",
+      "type": "string",
+      "description": "safe = valid and alias only. safe_judgement also keeps catch-all, unknown and role. all keeps everything.",
+      "editor": "select",
+      "enum": [
+        "all",
+        "safe_judgement",
+        "safe"
+      ],
+      "enumTitles": [
+        "All results",
+        "Safe + judgement (drop avoid)",
+        "Safe only"
+      ],
+      "default": "all"
+    },
+    "bulkThreshold": {
+      "title": "Bulk threshold",
+      "type": "integer",
+      "description": "Lists at or above this size use one bulk job instead of single calls.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 100000,
+      "default": 50
+    },
+    "concurrency": {
+      "title": "Concurrency (single mode)",
+      "type": "integer",
+      "description": "Parallel single verifications for small lists.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 20,
+      "default": 5
+    }
+  },
+  "required": [
+    "apiKey"
+  ]
+}
