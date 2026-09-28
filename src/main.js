@@ -66,7 +66,7 @@ try {
     log.info('Bulk job created', { jobId: job.jobId });
     await Actor.setStatusMessage(`Bulk job ${job.jobId} running`);
     results = await client.bulk.wait(job.jobId, {
-      timeout: 60 * 60000,
+      timeout: 355 * 60000,
       onProgress: (s) => {
         const pct = s.progress ?? (s.processedEmails && s.totalEmails ? Math.round((100 * s.processedEmails) / s.totalEmails) : null);
         if (pct != null) Actor.setStatusMessage(`Verifying: ${pct}%`);
