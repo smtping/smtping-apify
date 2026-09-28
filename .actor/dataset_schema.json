@@ -9,10 +9,12 @@
           "email",
           "status",
           "band",
+          "action",
           "statusDescription",
-          "isFreeEmail",
-          "isRoleAccount",
-          "mxRecord"
+          "isFreeDomain",
+          "isRoleBasedDomain",
+          "isTypos",
+          "domain"
         ]
       },
       "display": {
@@ -23,27 +25,35 @@
             "format": "text"
           },
           "status": {
-            "label": "Status",
+            "label": "Verdict",
             "format": "text"
           },
           "band": {
-            "label": "Band",
+            "label": "Group",
+            "format": "text"
+          },
+          "action": {
+            "label": "Recommended action",
             "format": "text"
           },
           "statusDescription": {
             "label": "Detail",
             "format": "text"
           },
-          "isFreeEmail": {
+          "isFreeDomain": {
             "label": "Free provider",
             "format": "boolean"
           },
-          "isRoleAccount": {
+          "isRoleBasedDomain": {
             "label": "Role account",
             "format": "boolean"
           },
-          "mxRecord": {
-            "label": "MX",
+          "isTypos": {
+            "label": "Likely typo",
+            "format": "boolean"
+          },
+          "domain": {
+            "label": "Domain",
             "format": "text"
           }
         }
