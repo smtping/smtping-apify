@@ -8,6 +8,7 @@ The Actor is free. Verifications use credits on your SMTPing account.
 
 - **Price.** From **$0.15 per 1,000** on the 1M pack, $0.38 per 1,000 on 100k. Credits never expire on pay-as-you-go.
 - **Unknown is free.** When a server gives no reliable answer, the result is `unknown` and you are not charged. Duplicates and rejected requests are free too.
+- **Largest risk databases.** 150M known spamtraps, 70M complainers, 1M spambots and bot clickers, 3,500+ disposable domains monitored daily.
 - **25 free credits every day** on every account, no card required.
 - **Rich verdicts.** 13 statuses in 3 groups, each with a recommended action, plus free-provider, role-account and typo flags.
 - **No email is sent.** The SMTP conversation stops before any message is transmitted.
