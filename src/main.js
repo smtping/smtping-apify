@@ -1,6 +1,29 @@
 import { Actor, log } from 'apify';
 import Smtping, { isEmail, AuthenticationError, InsufficientCreditsError } from '@smtping/sdk';
 
+// Verdict map, aligned with https://smtping.com/docs#result
+const VERDICTS = {
+  valid:          ['safe', 'Send'],
+  alias:          ['safe', 'Send, privacy alias forwarding to a real mailbox'],
+  catchall:       ['judgement', 'Send to engaged contacts only, exclude from cold outreach'],
+  valid_catchall: ['judgement', 'Catch-all domain with positive signals, lower risk'],
+  unknown:        ['judgement', 'No usable answer, retry in a few hours (not charged)'],
+  invalid:        ['do_not_send', 'Remove, will bounce'],
+  spamtrap:       ['do_not_send', 'Remove immediately, spamtrap'],
+  disposable:     ['do_not_send', 'Remove, throwaway address'],
+  blacklisted:    ['do_not_send', 'Remove, domain on blocklists'],
+  complainer:     ['do_not_send', 'Remove, history of spam complaints'],
+  spambot:        ['do_not_send', 'Remove, automated clicker'],
+  inbox_full:     ['do_not_send', 'Remove, mailbox over quota, will bounce'],
+  typo:           ['do_not_send', 'Remove or correct, misspelled domain'],
+};
+const classify = (r) => {
+  const s = String(r.status || '').toLowerCase().replace(/-/g, '_');
+  const key = s === 'catch_all' ? 'catchall' : s;
+  const [band, action] = VERDICTS[key] || (s === 'error' ? ['error', 'Request failed, retry'] : ['judgement', 'Review manually']);
+  return { ...r, band, action };
+};
+
 await Actor.init();
 
 const input = (await Actor.getInput()) || {};
@@ -32,7 +55,7 @@ log.info(`${list.length} unique addresses to verify`);
 const client = new Smtping({ apiKey, userAgent: 'smtping-apify/1.0.0' });
 const keep = {
   all: () => true,
-  safe_judgement: (r) => r.band !== 'avoid',
+  safe_judgement: (r) => r.band === 'safe' || r.band === 'judgement',
   safe: (r) => r.band === 'safe',
 }[outputFilter] || (() => true);
 
@@ -58,10 +81,10 @@ try {
   throw err;
 }
 
-const summary = { total: results.length, safe: 0, judgement: 0, avoid: 0, error: 0, byStatus: {} };
+results = results.map(classify);
+const summary = { total: results.length, safe: 0, judgement: 0, do_not_send: 0, error: 0, byStatus: {} };
 for (const r of results) {
-  const b = r.status === 'error' ? 'error' : r.band || 'judgement';
-  summary[b] = (summary[b] || 0) + 1;
+  summary[r.band] = (summary[r.band] || 0) + 1;
   summary.byStatus[r.status] = (summary.byStatus[r.status] || 0) + 1;
 }
 
@@ -69,7 +92,7 @@ const kept = results.filter(keep);
 await Actor.pushData(kept);
 await Actor.setValue('SUMMARY', summary);
 if (typeof Actor.setStatusMessage === 'function') {
-  await Actor.setStatusMessage(`Done: ${summary.safe} safe, ${summary.judgement} judgement, ${summary.avoid} avoid`, { isStatusMessageTerminal: true });
+  await Actor.setStatusMessage(`Done: ${summary.safe} safe, ${summary.judgement} judgement, ${summary.do_not_send} do not send`, { isStatusMessageTerminal: true });
 }
 log.info('Summary', summary);
 
