@@ -1,0 +1,18 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "SMTPing Email Verifier output",
+  "properties": {
+    "results": {
+      "type": "string",
+      "title": "Verification results",
+      "description": "One row per address: verdict, group, recommended action and flags.",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?view=overview"
+    },
+    "summary": {
+      "type": "string",
+      "title": "Summary",
+      "description": "Counts per group and per verdict.",
+      "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/SUMMARY"
+    }
+  }
+}
