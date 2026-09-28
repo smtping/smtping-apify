@@ -1,0 +1,38 @@
+{
+  "actorSpecification": 1,
+  "fields": {},
+  "views": {
+    "overview": {
+      "title": "Results",
+      "transformation": {
+        "fields": [
+          "email",
+          "matched",
+          "source",
+          "action"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "email": {
+            "label": "Email",
+            "format": "text"
+          },
+          "matched": {
+            "label": "Spambot found",
+            "format": "boolean"
+          },
+          "source": {
+            "label": "Source",
+            "format": "text"
+          },
+          "action": {
+            "label": "Recommended action",
+            "format": "text"
+          }
+        }
+      }
+    }
+  }
+}

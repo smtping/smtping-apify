@@ -1,0 +1,15 @@
+{
+  "actorSpecification": 1,
+  "name": "spambot-checker",
+  "title": "Spambot & Bot Click Checker | 1M Bots | $0.15/1k",
+  "description": "Spambot checker: detects 1M addresses tied to automated clicking, security scanners and bots that open and click every link, faking engagement. Up to 100,000 emails per run, from $0.15/1k. Bring your own SMTPing API key.",
+  "version": "1.0",
+  "buildTag": "latest",
+  "input": "./input_schema.json",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  },
+  "output": "./output_schema.json",
+  "dockerfile": "../Dockerfile",
+  "readme": "../README.md"
+}

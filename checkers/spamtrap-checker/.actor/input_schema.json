@@ -1,0 +1,49 @@
+{
+  "title": "Spamtrap Checker: 150M known spamtraps",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "apiKey": {
+      "title": "SMTPing API key",
+      "type": "string",
+      "description": "Your API key from app.smtping.com. Every account gets 25 free credits per day, no card required.",
+      "editor": "textfield",
+      "isSecret": true
+    },
+    "emails": {
+      "title": "Email addresses",
+      "type": "array",
+      "description": "One address per line. Duplicates and malformed lines are removed.",
+      "editor": "stringList",
+      "prefill": [
+        "someone@example.com"
+      ]
+    },
+    "fileUrl": {
+      "title": "List URL (CSV or TXT)",
+      "type": "string",
+      "description": "Optional public URL of a CSV or TXT file. Every email address found in it is checked.",
+      "editor": "textfield"
+    },
+    "outputFilter": {
+      "title": "Rows to keep",
+      "type": "string",
+      "description": "matched = only spamtrap hits. clean = only addresses with no match. all = everything.",
+      "editor": "select",
+      "enum": [
+        "all",
+        "matched",
+        "clean"
+      ],
+      "enumTitles": [
+        "All results",
+        "Matched only (spamtrap found)",
+        "Clean only"
+      ],
+      "default": "all"
+    }
+  },
+  "required": [
+    "apiKey"
+  ]
+}

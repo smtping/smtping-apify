@@ -1,0 +1,15 @@
+{
+  "actorSpecification": 1,
+  "name": "disposable-email-checker",
+  "title": "Disposable Email Checker | 3,500+ Domains Daily | $0.15/1k",
+  "description": "Disposable email checker: detects temporary and throwaway addresses against 3,500+ disposable domains monitored daily. Block burner signups, clean lists. Up to 100,000 emails per run, from $0.15/1k. Bring your own SMTPing API key.",
+  "version": "1.0",
+  "buildTag": "latest",
+  "input": "./input_schema.json",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  },
+  "output": "./output_schema.json",
+  "dockerfile": "../Dockerfile",
+  "readme": "../README.md"
+}

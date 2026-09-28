@@ -1,0 +1,15 @@
+{
+  "actorSpecification": 1,
+  "name": "complainer-checker",
+  "title": "Spam Complainer Checker | 70M Complainers | $0.15/1k",
+  "description": "Spam complainer checker against 70M addresses with a history of marking mail as spam. Real, deliverable mailboxes that basic verifiers keep. Up to 100,000 emails per run, from $0.15/1k. Bring your own SMTPing API key.",
+  "version": "1.0",
+  "buildTag": "latest",
+  "input": "./input_schema.json",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  },
+  "output": "./output_schema.json",
+  "dockerfile": "../Dockerfile",
+  "readme": "../README.md"
+}
