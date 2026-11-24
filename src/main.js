@@ -15,13 +15,18 @@ const VERDICTS = {
   complainer:     ['do_not_send', 'Remove, history of spam complaints'],
   spambot:        ['do_not_send', 'Remove, automated clicker'],
   inbox_full:     ['do_not_send', 'Remove, mailbox over quota, will bounce'],
+  no_reply:       ['do_not_send', 'Remove, unattended mailbox'],
   typo:           ['do_not_send', 'Remove or correct, misspelled domain'],
 };
+const SERVER_BANDS = { safe: 'safe', judgement: 'judgement', avoid: 'do_not_send' };
 const classify = (r) => {
   const s = String(r.status || '').toLowerCase().replace(/-/g, '_');
   const key = s === 'catch_all' ? 'catchall' : s;
   const [band, action] = VERDICTS[key] || (s === 'error' ? ['error', 'Request failed, retry'] : ['judgement', 'Review manually']);
-  return { ...r, band, action };
+  // The API decides the band; the map above is the fallback and gives the action.
+  const server = SERVER_BANDS[r.band];
+  if (!VERDICTS[key] || !server || server === band) return { ...r, band: VERDICTS[key] ? band : server || band, action };
+  return { ...r, band: server, action: r.didYouMean ? `Check the domain, did you mean ${r.didYouMean}` : 'Review manually' };
 };
 
 await Actor.init();
